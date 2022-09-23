@@ -8,7 +8,7 @@ public class Jogo {
 
     public Jogo(int popSize) {
         populacao = new Populacao(popSize);
-        melhorIndividuo = populacao.getFittest();
+        melhorIndividuo = populacao.getIndividuoMelhorAptidao();
     }
 
     public static void main(String[] args) throws FileNotFoundException {

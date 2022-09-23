@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Individuo {
 
-    public int aptidao = 0;
+    public double aptidao = 0;
     public ArrayList<Integer> genes = new ArrayList<Integer>();
     public int[] movimentosPossiveis = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
@@ -34,11 +34,11 @@ public class Individuo {
     
 
     // getters and setters
-    public int getAptidao() {
+    public double getAptidao() {
         return aptidao;
     }
 
-    public void setAptidao(int fitness) {
+    public void setAptidao(double fitness) {
         this.aptidao = fitness;
     }
 
@@ -46,11 +46,15 @@ public class Individuo {
         return genes;
     }
 
-    public void setGenes(ArrayList<Integer> genes) {
-        this.genes = genes;
+    // Para mutação -> Coloca novo gene na posição index
+    public void setGene(int index, int gene) {
+        genes.set(index, gene);
     }
 
-    //show the individual to string
+    public int getGene(int index) {
+        return genes.get(index);
+    }
+
     public String toString() {
         String geneString = "Genes: [";
         for (int i = 0; i < 100; i++) {

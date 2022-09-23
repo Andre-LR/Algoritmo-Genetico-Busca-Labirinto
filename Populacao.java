@@ -1,45 +1,52 @@
+import java.util.Random;
+
 public class Populacao {
-    public int popSize;
+    public int tamPopulacao;
+    public int qtdMaxGeracoes = 500;
+    public int geracaoAtual = 0;
     public Individuo[] individuos;
-    public int melhorAptidao = 0;
+    public double melhorAptidao = 0;
+    public int melhorAptidaoIndex;
+    public double aptidaoPopulacao = 0;
 
 
-    public Populacao(int popSize) {
-        this.popSize = popSize;
-        individuos = new Individuo[popSize];
+    public Populacao(int tamPopulacao) {
+        this.tamPopulacao = tamPopulacao;
+        individuos = new Individuo[tamPopulacao];
 
         // Cria a população inicial
-        for (int i = 0; i < popSize; i++) {
+        for (int i = 0; i < tamPopulacao; i++) {
             individuos[i] = new Individuo();
         }
     }
 
-    public Individuo getFittest() {
-        int aptidaoMaxima = Integer.MIN_VALUE;
+    public Individuo getIndividuoMelhorAptidao() {
+        double aptidaoMaxima = Double.MAX_VALUE;
         int aptidaoMaximaIndex = 0;
         for (int i = 0; i < individuos.length; i++) {
-            if (aptidaoMaxima <= individuos[i].getAptidao()) {
+            if (aptidaoMaxima >= individuos[i].getAptidao()) {
                 aptidaoMaxima = individuos[i].getAptidao();
                 aptidaoMaximaIndex = i;
             }
         }
-        melhorAptidao = individuos[aptidaoMaximaIndex].getAptidao();
 
+        melhorAptidao = individuos[aptidaoMaximaIndex].getAptidao();
+        melhorAptidaoIndex = aptidaoMaximaIndex;
         return individuos[aptidaoMaximaIndex];
     }
 
-    public Individuo getSecondFittest() {
-        int aptidaoMaxima = Integer.MIN_VALUE;
+    public Individuo getIndividuoSegundoMelhorAptidao() {
+        double aptidaoMaxima = Double.MAX_VALUE;
         int aptidaoMaximaIndex = 0;
-        int aptidaoMaxima2 = Integer.MIN_VALUE;
+        double aptidaoMaxima2 = Double.MAX_VALUE;
         int aptidaoMaximaIndex2 = 0;
         for (int i = 0; i < individuos.length; i++) {
-            if (aptidaoMaxima <= individuos[i].getAptidao()) {
+            if (aptidaoMaxima >= individuos[i].getAptidao()) {
                 aptidaoMaxima2 = aptidaoMaxima;
                 aptidaoMaximaIndex2 = aptidaoMaximaIndex;
                 aptidaoMaxima = individuos[i].getAptidao();
                 aptidaoMaximaIndex = i;
-            } else if (aptidaoMaxima2 <= individuos[i].getAptidao()) {
+            } else if (aptidaoMaxima2 >= individuos[i].getAptidao()) {
                 aptidaoMaxima2 = individuos[i].getAptidao();
                 aptidaoMaximaIndex2 = i;
             }
@@ -47,37 +54,18 @@ public class Populacao {
         return individuos[aptidaoMaximaIndex2];
     }
 
-    public int getLeastFittestIndex() {
-        int aptidaoMinima = Integer.MAX_VALUE;
-        int aptidaoMinimaIndex = 0;
-        for (int i = 0; i < individuos.length; i++) {
-            if (aptidaoMinima >= individuos[i].getAptidao()) {
-                aptidaoMinima = individuos[i].getAptidao();
-                aptidaoMinimaIndex = i;
-            }
-        }
-        return aptidaoMinimaIndex;
-    }
-
-    public int getFittestIndex() {
-        int aptidaoMaxima = Integer.MIN_VALUE;
-        int aptidaoMaximaIndex = 0;
-        for (int i = 0; i < individuos.length; i++) {
-            if (aptidaoMaxima <= individuos[i].getAptidao()) {
-                aptidaoMaxima = individuos[i].getAptidao();
-                aptidaoMaximaIndex = i;
-            }
-        }
-        return aptidaoMaximaIndex;
+    public int getIndexMelhorAptidao() {
+        Individuo i = getIndividuoMelhorAptidao();
+        return melhorAptidaoIndex;
     }
 
     // getters and setters
-    public int getPopSize() {
-        return popSize;
+    public int getTamPopulacao() {
+        return tamPopulacao;
     }
 
-    public void setPopSize(int popSize) {
-        this.popSize = popSize;
+    public void setTamPopulacao(int tamPopulacao) {
+        this.tamPopulacao = tamPopulacao;
     }
 
     public Individuo[] getIndividuos() {
@@ -88,11 +76,52 @@ public class Populacao {
         this.individuos = individuos;
     }
 
-    public int getMelhorAptidao() {
+    public void addIndividuo(Individuo individuo) {
+        for (int i = 0; i < individuos.length; i++) {
+            if (individuos[i] == null) {
+                individuos[i] = individuo;
+                break;
+            }
+        }
+    }
+
+    public double getMelhorAptidao() {
         return melhorAptidao;
     }
 
     public void setMelhorAptidao(int melhorAptidao) {
         this.melhorAptidao = melhorAptidao;
+    }
+
+    public void setPopulacaoAptidao(double populacaoAptidao) {
+        this.aptidaoPopulacao = populacaoAptidao;
+    }
+
+    public int getQtdMaxGeracoes() {
+        return qtdMaxGeracoes;
+    }
+
+    public int getGeracaoAtual() {
+        return geracaoAtual;
+    }
+
+    public Individuo getIndividuoByIndex(int index) {
+        return individuos[index];
+    }
+
+    public void setIndividuoByIndex(Individuo individuo, int index) {
+        individuos[index] = individuo;
+    }
+
+
+    // Embaralhar a população
+    public void embaralha() {
+        Random rnd = new Random();
+        for (int i = tamPopulacao - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            Individuo a = individuos[index];
+            individuos[index] = individuos[i];
+            individuos[i] = a;
+        }
     }
 }
