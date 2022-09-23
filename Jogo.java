@@ -12,19 +12,13 @@ public class Jogo {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-    /* 
-        int popSize = 10;
-        
-        // Cria população inicial
-        Jogo jogo = new Jogo(popSize);
-        System.out.println("População inicial contendo " + popSize + " indivíduos");
-
-        // Calcular aptidão de cada indivíduo da população inicial e mostrar a melhor aptidão
-    */    
         Maze maze = new Maze();
+        MazeDisplay mazeDisplay = new MazeDisplay(maze, "Labirinto");
+        maze.printLabirinto();
+        maze.printPosicaoObjetivos();
     
-        Individuo individuo = new Individuo();
-        individuo.toString();
+       
+        
         
     }
 

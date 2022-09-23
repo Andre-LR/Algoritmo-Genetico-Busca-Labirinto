@@ -1,49 +1,94 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Inicialização do Labirinto
+ * 
+ * Legendas:
+ * 0 = Livre
+ * 1 = Parede
+ * E = Posição Inicial
+ * C = Objetivos a serem buscados
+ */
 public class Maze {
-    public int[] entrada = {0,0};
-    //Array com as coordenadas dos objetivos
-    public int[][] objetivos = new int[2][2];
+    public char[][] matrizLabirinto;
+    public int linhas;
+    public int colunas;
+    public int[] posicaoInicial = {0,0};
+    public ArrayList<int[]> posicaoObjetivos = new ArrayList<int[]>(); // Lista com coordenada dos objetivos na Matriz
 
-    int rows = 0;
-    int columns = 1;
-    char[][] matrizLabirinto = new char[rows][columns];
-
-    public Maze() throws FileNotFoundException {
-        FileReader file = new FileReader("labirinto.txt");
+    // Labirinto por leitura do arquivo "labirinto.txt"
+    // CORRIGIR MÉTODO
+    public Maze(String arquivotxt) throws FileNotFoundException {
+        FileReader file = new FileReader(arquivotxt);
         Scanner scanner = new Scanner(file);
-                        
-        while (scanner.hasNextLine()) {
-            String linha = scanner.nextLine();
-            columns = linha.length();
-            rows++;
-        }
-        file = new FileReader("labirinto.txt");
-        scanner = new Scanner(file);
-        matrizLabirinto = new char[rows][columns];
+
+        linhas = 10;
+        colunas = 10;
+        
+        matrizLabirinto = new char[linhas-1][colunas-1];
         int i = 0;
         while (scanner.hasNextLine()) {
             String linha = scanner.nextLine();
-            for (int j = 0; j < columns; j++) {
+            for (int j = 0; j < linha.length(); j++) {
                 matrizLabirinto[i][j] = linha.charAt(j);
                 if (linha.charAt(j) == 'I') {
-                    entrada[0] = i;
-                    entrada[1] = j;
+                    posicaoInicial[0] = i;
+                    posicaoInicial[1] = j;
+                }
+                if (linha.charAt(j) == 'C') {
+                    int[] posicaoObjetivo = {i, j};
+                    posicaoObjetivos.add(posicaoObjetivo);
                 }
             }
             i++;
         }
+
+        scanner.close();
+    };
+
+    // Labirinto pronto
+    public Maze(){
+        matrizLabirinto = new char[][]{
+            {'E', '1', '1', '1', '1', '1', '1', '1', '0', '1'},
+            {'0', '0', '0', '0', 'C', '0', '0', '0', '0', '1'},
+            {'1', '1', '1', '0', '1', '1', '1', '1', '1', '0'},
+            {'0', '0', '1', '0', '1', '0', '0', '0', '0', '0'},
+            {'C', '0', '1', '0', '1', '1', '0', '1', '1', '1'},
+            {'0', '0', '0', '0', '1', 'C', '0', '0', '0', '0'},
+            {'0', '1', '1', '1', '1', '0', '0', '1', '0', 'C'},
+            {'0', '1', '0', '0', '0', '0', '0', '0', '1', '1'},
+            {'0', '1', '1', '1', '1', '1', '1', '0', '0', '1'},
+            {'C', '0', '0', '0', '0', '0', '0', '0', '0', '1'}
+        };
+
+        // Busca posição objetivos e posição inicial
+        for (int i = 0; i < matrizLabirinto.length; i++) {
+            for (int j = 0; j < matrizLabirinto[i].length; j++) {
+                if (matrizLabirinto[i][j] == 'E') {
+                    posicaoInicial[0] = i;
+                    posicaoInicial[1] = j;
+                }
+                if (matrizLabirinto[i][j] == 'C') {
+                    int[] posicaoObjetivo = {i, j};
+                    posicaoObjetivos.add(posicaoObjetivo);
+                }
+            }
+        }
     }
     
-    //imprime posicao dos objetivos
-    public void printObjetivos() {
-        System.out.println("Objetivos:");
-        for (int i = 0; i < objetivos.length; i++) {
-            System.out.println("Objetivo " + (i+1) + ": " + objetivos[i][0] + ", " + objetivos[i][1]);
+    public void printPosicaoObjetivos() {
+        System.out.println("\nPosicao dos objetivos:");
+        String txt = "Coordenadas: [";
+        for (int i = 0; i < posicaoObjetivos.size(); i++) {
+            txt += "(" + posicaoObjetivos.get(i)[0] + ", " + posicaoObjetivos.get(i)[1] + "), ";
         }
+        txt += "]";
+
+        System.out.println(txt);
     }
     
     public void printLabirinto(){
@@ -53,6 +98,10 @@ public class Maze {
             }
             System.out.println();
         }
+    }
+
+    public char[][] getMaze(){
+        return matrizLabirinto;
     }
 
 

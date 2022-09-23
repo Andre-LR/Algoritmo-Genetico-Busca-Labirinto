@@ -1,10 +1,10 @@
-public class Labirinto {
+public class LabirintoAnterior {
     public char[][] matrizLabirinto;
     public int[] posicaoInicial = {0,0};
     public int[] posicao_objetivo = new int[2];
 
     //Create the maze Matrix with rows and columns as inputs
-    public Labirinto(int rows, int columns) {
+    public LabirintoAnterior(int rows, int columns) {
         matrizLabirinto = new char[rows][columns];
 
         for (int i = 0; i < rows; i++) {
@@ -22,7 +22,7 @@ public class Labirinto {
     }
 
     // Create a NxN maze
-    public Labirinto(int n){
+    public LabirintoAnterior(int n){
         matrizLabirinto = new char[n][n];
         
         for (int i = 0; i < matrizLabirinto.length; i++) {
@@ -40,7 +40,7 @@ public class Labirinto {
     }
 
     // Create a maze with starting position and objetive position
-    public Labirinto(int rows, int columns, int objetivoX, int objetivoY, int posicaoInicialX, int posicaoInicialY){
+    public LabirintoAnterior(int rows, int columns, int objetivoX, int objetivoY, int posicaoInicialX, int posicaoInicialY){
         matrizLabirinto = new char[rows][columns];
 
         for (int i = 0; i < rows; i++) {
