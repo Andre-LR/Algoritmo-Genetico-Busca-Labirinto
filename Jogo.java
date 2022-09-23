@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class Jogo {
@@ -10,7 +11,8 @@ public class Jogo {
         melhorIndividuo = populacao.getFittest();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+    /* 
         int popSize = 10;
         
         // Cria população inicial
@@ -18,9 +20,14 @@ public class Jogo {
         System.out.println("População inicial contendo " + popSize + " indivíduos");
 
         // Calcular aptidão de cada indivíduo da população inicial e mostrar a melhor aptidão
+    */    
+        Maze maze = new Maze();
+    
+        Individuo individuo = new Individuo();
+        individuo.toString();
         
-
     }
+
 
     // Create Display matrix NxN where 1 is a block and 0 is clear path
     public static int[][] createDisplay(int n){
@@ -54,9 +61,7 @@ public class Jogo {
       *     - Somar 500 pontos ao pegar comida
       *     - Somar 1000 pontos ao pegar todas as comidas
       */
-     public static int calcularAptidao(Individuo individuo, int[][] display) {
-
-     }
+     
 
 
 }
