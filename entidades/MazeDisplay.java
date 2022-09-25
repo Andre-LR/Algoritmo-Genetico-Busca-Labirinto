@@ -22,7 +22,6 @@ public class MazeDisplay extends JPanel {
             }
         }
     }
-
     
     /**
      * Display do Labirinto

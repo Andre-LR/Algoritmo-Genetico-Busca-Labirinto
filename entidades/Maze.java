@@ -104,5 +104,50 @@ public class Maze {
         return matrizLabirinto;
     }
 
+    public boolean isBlock(int x, int y){
+        if (matrizLabirinto[x][y] == '1') {
+            return true;
+        }
+        return false;
+    }
 
+    /** 
+     * maximo index eixo X
+     */
+    public int getMaxX() {
+        return matrizLabirinto.length;
+    }
+
+    /** 
+     * maximo index do eixo Y
+     */
+    public int getMaxY() {
+        return matrizLabirinto[0].length;
+    }
+
+    public void visitaPosicao(int x, int y) {
+        matrizLabirinto[x][y] = 'V';
+    }
+
+    /** 
+     * Verifica a posição informada do individuo no labirinto
+     * @param x coordenada X
+     * @param y coordenada Y
+     * @return int valor da posição
+     */
+    public char getValorPosicao(int x, int y) {
+        return this.matrizLabirinto[x][y];
+    }
+
+    public int getQtdObjetivos(){
+        int qtd = 0;
+        for (int i = 0; i < matrizLabirinto.length; i++) {
+            for (int j = 0; j < matrizLabirinto[0].length; j++) {
+                if (matrizLabirinto[i][j] == 'C') {
+                    qtd++;
+                }
+            }
+        }
+        return qtd;
+    }
 }
