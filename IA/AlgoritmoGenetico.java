@@ -29,13 +29,19 @@ public class AlgoritmoGenetico {
         }
         
         // Vizualiza geracao inicial
-        System.out.println(populacao.toString());
+        //System.out.println(populacao.toString());
+        
+        // imprime o melhor indivíduo
+        //System.out.println("\n\nMelhor Individuo da geraçao: " + populacao.getMelhorIndividuo().toString());
+
+        // Printa geração
+        System.out.println(populacao.printGeracao());
         
         // enquanto não atingir o critério de parada 
         // =========================== PRECISA TESTAR E ATUALIZAR ==================================
         // =========================== PRECISA TESTAR E ATUALIZAR ==================================
         // =========================== PRECISA TESTAR E ATUALIZAR ==================================
-        while(populacao.getQtdMaxGeracoes() > populacao.getGeracaoAtual() && populacao.getMelhorAptidao() > 0){
+        while(populacao.getQtdMaxGeracoes() > populacao.getGeracaoAtual() && populacao.getMelhorIndividuo().objetivosEncontrados < Labirinto.qtdObjetivos){
             // seleciona os indivíduos para crossover
             Populacao popIntermediaria = populacao;
 
@@ -69,34 +75,15 @@ public class AlgoritmoGenetico {
             }
 
             // Vizualiza nova geracao
-            System.out.println(populacao.toString());
+           // System.out.println(populacao.toString());
 
-          // populacao.avaliar(labirinto);
+            // imprime o melhor indivíduo
+            //System.out.println("\n\nMelhor Individuo da geraçao: " + populacao.getMelhorIndividuo().toString());
+
+            // Printa geração
+            System.out.println(populacao.printGeracao());
         }
 
-        // imprime o melhor indivíduo e o caminho percorrido por ele
-        System.out.println("Melhor Individuo: " + populacao.getMelhorIndividuo().toString());
 
     }
-
-    /**
-     * Aptidão da população
-     * 
-     * Calcula a aptidão de cada indivíduo da população, e então obtém a Aptidão total 
-     * daquela população. Verificar a aptidão total de cada população irá servir para 
-     * verificar se os indivíduos estão evoluindo.
-     * 
-     * @param populacao que será avaliada
-     * @param maze labirinto que será usado para testar a população
-     */
-    public void calculaAptidaoPopulacao(Populacao populacao, Labirinto labirinto) {
-        double populacaoAptidao = 0;
-
-        for (Individuo individuo : populacao.getIndividuos()) {
-           // populacaoAptidao += this.calculaAptidao(individuo, maze);
-        }
-
-        populacao.setPopulacaoAptidao(populacaoAptidao);
-    }
-
 }

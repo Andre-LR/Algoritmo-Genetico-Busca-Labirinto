@@ -17,7 +17,7 @@ public class Selecao {
         Individuo melhorIndividuo = populacao.individuos[0];
 
         for(int i = 1; i < populacao.individuos.length; i++){
-            if(populacao.individuos[i].getAptidao() < melhorIndividuo.getAptidao()){
+            if(populacao.individuos[i].getAptidao() > melhorIndividuo.getAptidao()){
                 melhorIndividuo = populacao.individuos[i];
             }
         }

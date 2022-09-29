@@ -4,10 +4,9 @@ import UTILS.Labirinto;
 
 public class Populacao {
     public int tamPopulacao;
-    public int qtdMaxGeracoes = 20;
+    public int qtdMaxGeracoes = 1500;
     public int geracaoAtual = 0;
     public Individuo[] individuos;
-    public double aptidaoPopulacao = 0;
 
     public Populacao(int tamPopulacao) {
         this.tamPopulacao = tamPopulacao;
@@ -20,10 +19,10 @@ public class Populacao {
     }
 
     public Individuo getMelhorIndividuo() {
-        double aptidaoMaxima = Double.MAX_VALUE;
+        double aptidaoMaxima = Double.MIN_VALUE;
         int aptidaoMaximaIndex = 0;
         for (int i = 0; i < individuos.length; i++) {
-            if (aptidaoMaxima >= individuos[i].getAptidao()) {
+            if (aptidaoMaxima <= individuos[i].getAptidao()) {
                 aptidaoMaxima = individuos[i].getAptidao();
                 aptidaoMaximaIndex = i;
             }
@@ -43,10 +42,6 @@ public class Populacao {
         return individuos[index];
     }
 
-    public void setPopulacaoAptidao(double populacaoAptidao) {
-        this.aptidaoPopulacao = populacaoAptidao;
-    }
-
     public int getQtdMaxGeracoes() {
         return qtdMaxGeracoes;
     }
@@ -61,10 +56,19 @@ public class Populacao {
 
 
     public String toString() {
-        String s = "\n\nGeração: " + geracaoAtual;
+        String s = "\n\n\n\n============================================================================================= Geraçao " + geracaoAtual + " =============================================================================================";
         for (int i = 0; i < individuos.length; i++) {
-            s += "\n\nIndivíduo: " + i + " --> " + individuos[i].toString();
+            s += "\n\nIndividuo: " + i + " --> " + individuos[i].toString();
         }
+        
+        return s;
+    }
+
+    public String printGeracao() {
+        String s = "\n\n\n\n============================================================================================= Geraçao " + geracaoAtual + " =============================================================================================";
+        s += "\nMelhor aptidao da geracao: " + getMelhorAptidao();
+        s += "\nObjetivos alcançados: " + getMelhorIndividuo().objetivosEncontrados;
+        s += "\nMelhor Individuo: " + getMelhorIndividuo().toString();
         return s;
     }
 }

@@ -48,7 +48,6 @@ public class Crossover {
         // Filtra para que apenas parcela da população (conforme taxaCrossover) realize crossover
         // Caso não bata o indice, o individuo no Index é mantido na nova população
         if (taxaCrossover > Math.random()) {
-
             // Pega o ponto de corte para o crossover
             int pontoCorte = (int) (Math.random() * (pai.getGenes().size() + 1));
 

@@ -12,8 +12,8 @@ public class Main {
         labirinto.imprimePosicaoObjetivos();     
         System.out.println("Qtd de objetivos: " + Labirinto.qtdObjetivos);
 
-        int tamPopulacao = 4; // Deve ser PAR
-        double taxaMutacao = 0.1;
+        int tamPopulacao = 500; // Deve ser PAR
+        double taxaMutacao = 0.3;
         double taxaCrossover = 0.5;
         AlgoritmoGenetico ag = new AlgoritmoGenetico(labirinto, tamPopulacao, taxaMutacao, taxaCrossover);
         ag.run();

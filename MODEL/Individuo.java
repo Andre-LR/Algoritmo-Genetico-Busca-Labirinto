@@ -70,7 +70,7 @@ public class Individuo {
 
         geneString = geneString + "]";
 
-        geneString += "\nAptidão: " + getAptidao();
+        geneString += "\nAptidao: " + getAptidao();
         geneString += "\nQuantidade de objetivos encontrados: " + objetivosEncontrados;
         return geneString;
     }
@@ -82,11 +82,11 @@ public class Individuo {
     // ===================================== CÁLCULO DE APTIDÃO =====================================
     // Cálcula aptidão do indivíduo
     public void calculaAptidao(){
-        double fitness = 100;
+        double fitness = 0;
         // Se encontrou todos os objetivos, quebra
         for (int gene : genes) {
             if(objetivosEncontrados == Labirinto.qtdObjetivos){
-                fitness -= 100;
+                fitness += 300;
                 break;
             }
 
@@ -96,6 +96,7 @@ public class Individuo {
             if(gene == 4){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0] < 0 || posicaoAtual[1]-1 < 0 || posicaoAtual[0] > Labirinto.linhas-1 || posicaoAtual[1]-1 > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]-1] == '0' || Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]-1] == 'C'){
@@ -105,13 +106,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness += 5;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -126,6 +127,7 @@ public class Individuo {
             if(gene == 6){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0] < 0 || posicaoAtual[1]+1 < 0 || posicaoAtual[0] > Labirinto.linhas-1 || posicaoAtual[1]+1 > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]+1] == '0' || Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]+1] == 'C'){
@@ -135,13 +137,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness -=1;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -156,6 +158,7 @@ public class Individuo {
             if(gene == 8){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0]-1 < 0 || posicaoAtual[1] < 0 || posicaoAtual[0]-1 > Labirinto.linhas-1 || posicaoAtual[1] > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]] == '0' || Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]] == 'C'){
@@ -165,13 +168,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness += 5;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -186,6 +189,7 @@ public class Individuo {
             if(gene == 2){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0]+1 < 0 || posicaoAtual[1] < 0 || posicaoAtual[0]+1 > Labirinto.linhas-1 || posicaoAtual[1] > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]] == '0' || Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]] == 'C'){
@@ -195,13 +199,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness += 5;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -216,6 +220,7 @@ public class Individuo {
             if(gene == 7){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0]-1 < 0 || posicaoAtual[1]-1 < 0 || posicaoAtual[0]-1 > Labirinto.linhas-1 || posicaoAtual[1]-1 > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]-1] == '0' || Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]-1] == 'C'){
@@ -225,13 +230,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness += 5;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -246,6 +251,7 @@ public class Individuo {
             if(gene == 9){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0]-1 < 0 || posicaoAtual[1]+1 < 0 || posicaoAtual[0]-1 > Labirinto.linhas-1 || posicaoAtual[1]+1 > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]+1] == '0' || Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]+1] == 'C'){
@@ -255,13 +261,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness += 5;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -276,6 +282,7 @@ public class Individuo {
             if(gene == 1){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0]+1 < 0 || posicaoAtual[1]-1 < 0 || posicaoAtual[0]+1 > Labirinto.linhas-1 || posicaoAtual[1]-1 > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]-1] == '0' || Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]-1] == 'C'){
@@ -285,13 +292,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness -=1;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
@@ -306,6 +313,7 @@ public class Individuo {
             if(gene == 3){
                 // Se for movimento inválido, quebra
                 if(posicaoAtual[0]+1 < 0 || posicaoAtual[1]+1 < 0 || posicaoAtual[0]+1 > Labirinto.linhas-1 || posicaoAtual[1]+1 > Labirinto.colunas-1){
+                    fitness -= 50;
                     break;
                 }else{
                     if(Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]+1] == '0' || Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]+1] == 'C'){
@@ -315,13 +323,13 @@ public class Individuo {
                         
                         // se posicao atual ja foi visitada
                         if(posicoesVisitadas.contains(posicaoAtual)){
-                            fitness += 50;
+                            fitness += 2;
                         }else{
-                            fitness += 10;
+                            fitness += 5;
                             // se a posicao atual for um objetivo
                             if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
-                                fitness -= 20;
+                                fitness += 30;
                             }
                             // adiciona visitados
                             posicoesVisitadas.add(posicaoAtual);
