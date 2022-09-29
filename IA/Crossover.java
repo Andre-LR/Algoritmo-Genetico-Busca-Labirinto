@@ -16,6 +16,32 @@ public class Crossover {
     *
     * @return atualizar a população atual
     */
+
+    /**
+    public static Individuo crossover(double taxaCrossover, Individuo pai, Individuo mae) {           
+        Individuo filho = new Individuo();
+
+        // ponto de corte na metade do cromossomo
+        int pontoCorte = pai.getGenes().size() / 2;
+        
+        // Loop sobre os genes
+        for (int geneIndex = 0; geneIndex < pai.getGenes().size(); geneIndex++) {
+            // Usa metade dos genes do indivíduo PAI e metade dos genes do indivíduo MÃE
+            if (geneIndex < pontoCorte) {
+                filho.setGene(geneIndex, pai.getGene(geneIndex));
+            } else {
+                filho.setGene(geneIndex, mae.getGene(geneIndex));
+            }
+        }
+        return filho;
+    }
+
+    */
+
+
+
+
+
     public static Individuo crossover(double taxaCrossover, Individuo pai, Individuo mae) {           
         Individuo filho = new Individuo();     
 
@@ -41,4 +67,5 @@ public class Crossover {
         }
         return filho;
     }
+    
 }

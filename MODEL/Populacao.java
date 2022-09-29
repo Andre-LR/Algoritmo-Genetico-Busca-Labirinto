@@ -4,7 +4,7 @@ import UTILS.Labirinto;
 
 public class Populacao {
     public int tamPopulacao;
-    public int qtdMaxGeracoes = 50;
+    public int qtdMaxGeracoes = 20;
     public int geracaoAtual = 0;
     public Individuo[] individuos;
     public double aptidaoPopulacao = 0;
@@ -55,11 +55,16 @@ public class Populacao {
         return geracaoAtual;
     }
 
+    public void proximaGeracao() {
+        this.geracaoAtual++;
+    }
+
+
     public String toString() {
         String s = "\n\nGeração: " + geracaoAtual;
         for (int i = 0; i < individuos.length; i++) {
             s += "\n\nIndivíduo: " + i + " --> " + individuos[i].toString();
         }
-        return s + "]";
+        return s;
     }
 }

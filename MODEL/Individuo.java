@@ -29,7 +29,7 @@ public class Individuo {
      */
     public Individuo() {
         Random random = new Random();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 75; i++) {
             int valor = movimentosPossiveis[random.nextInt(movimentosPossiveis.length)];
 
             if (valor == 5) {
@@ -54,7 +54,6 @@ public class Individuo {
         return genes;
     }
 
-    // Para mutação -> Coloca novo gene na posição index
     public void setGene(int index, int gene) {
         genes.set(index, gene);
     }
@@ -65,7 +64,7 @@ public class Individuo {
 
     public String toString() {
         String geneString = "Genes: [";
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < genes.size(); i++) {
             geneString +=  getGenes().get(i) + ", ";
         }
 
@@ -110,7 +109,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]-1] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -140,7 +139,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]+1] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -170,7 +169,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -200,7 +199,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -230,7 +229,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]-1] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -260,7 +259,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]-1][posicaoAtual[1]+1] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -290,7 +289,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]-1] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }
@@ -320,7 +319,7 @@ public class Individuo {
                         }else{
                             fitness += 10;
                             // se a posicao atual for um objetivo
-                            if(Labirinto.labirinto[posicaoAtual[0]+1][posicaoAtual[1]+1] == 'C'){
+                            if(Labirinto.labirinto[posicaoAtual[0]][posicaoAtual[1]] == 'C'){
                                 objetivosEncontrados++;
                                 fitness -= 20;
                             }

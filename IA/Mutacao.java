@@ -1,5 +1,7 @@
 package IA;
 
+import java.util.Random;
+
 import MODEL.Individuo;
 
 public class Mutacao {
@@ -10,19 +12,17 @@ public class Mutacao {
     * Aplica mutação na população
     * @return População atual mutada
     */
+    
     public static Individuo mutacao(double taxaMutacao, Individuo individuo) {
+        int[] movimentos = {1, 2, 3, 4, 6, 7, 8, 9};
+        Random random = new Random();
+        
         // Loop sobre os genes
         for (int geneIndex = 0; geneIndex < individuo.getGenes().size(); geneIndex++) {
             // Aplica mutação
             if (taxaMutacao > Math.random()) {
-                // Pega o novo gene
-                int novoGene = individuo.getGene(geneIndex);
-                // Aplica mutação até que um novo gene seja gerado
-                while (novoGene == individuo.getGene(geneIndex)) {
-                    novoGene = (int) (Math.random() * individuo.getGenes().size() + 1);
-                }
-                // Define o novo gene
-                individuo.setGene(geneIndex, novoGene);
+                //troca por um movimento aleatorio
+                individuo.setGene(geneIndex, movimentos[random.nextInt(movimentos.length)]);
             }
         }
         return individuo;

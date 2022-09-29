@@ -31,10 +31,13 @@ public class AlgoritmoGenetico {
         // Vizualiza geracao inicial
         System.out.println(populacao.toString());
         
-        // enquanto não atingir o critério de parada PRECISA TESTAR E ATUALIZAR
+        // enquanto não atingir o critério de parada 
+        // =========================== PRECISA TESTAR E ATUALIZAR ==================================
+        // =========================== PRECISA TESTAR E ATUALIZAR ==================================
+        // =========================== PRECISA TESTAR E ATUALIZAR ==================================
         while(populacao.getQtdMaxGeracoes() > populacao.getGeracaoAtual() && populacao.getMelhorAptidao() > 0){
             // seleciona os indivíduos para crossover
-            Populacao popIntermediaria = new Populacao(popSize);
+            Populacao popIntermediaria = populacao;
 
             Individuo[] individuosSelecionados = new Individuo[popIntermediaria.individuos.length];
             for(int i = 0; i < popIntermediaria.individuos.length; i++){
@@ -58,7 +61,7 @@ public class AlgoritmoGenetico {
 
             // substitui a população antiga pela nova
             populacao = popIntermediaria;
-            populacao.geracaoAtual++;
+            this.populacao.proximaGeracao();
 
             // avalia a nova população
             for (int i = 0; i < populacao.getIndividuos().length; i++) {
@@ -74,46 +77,6 @@ public class AlgoritmoGenetico {
         // imprime o melhor indivíduo e o caminho percorrido por ele
         System.out.println("Melhor Individuo: " + populacao.getMelhorIndividuo().toString());
 
-    }
-
- 
-    //========================================== APTIDÃO ============================================
-
-    /**
-     * Calcula a aptidão de um indivíduo em um dado labirinto
-     * 
-     * O cálculo é realizado com base nos movimentos de um indivíduo no labirinto
-     * informado.
-     *  
-    * Calcula a aptidão - Função heurística dos cromossomos
-    * Heurística: Melhor pontuação
-    * 
-    *    Pontuação: 
-    *     - Subtair 10 pontos para cada movimento
-    *     - Subtrair 200 pontos para cada movimento que o indivíduo chega em uma posição bloqueada
-    *     - Subtrair 500 pontos ao passar 3x no mesmo bloco
-    *     - Somar 500 pontos ao pegar comida
-    *     - Somar 1000 pontos ao pegar todas as comidas
-    *
-     * 
-     *  ==================================FAZER======================================
-     */
-    public double calculaAptidao(Individuo individuo) {
-        //calcula a aptidão do indivíduo
-        
-
-
-
-
-        
-
-
-
-
-        // Armazena a aptidão
-       // individuo.setAptidao(aptidao);
-
-        return 0;
     }
 
     /**
@@ -134,25 +97,6 @@ public class AlgoritmoGenetico {
         }
 
         populacao.setPopulacaoAptidao(populacaoAptidao);
-    }
-
-
-
-    /**
-     * Verifica se a população possui uma condição de parada
-     * Condições:
-     *  - Se a população atingiu o número máximo de gerações
-     *  - =================INCLUIR DEMAIS SE FOR O CASO==================
-     *  - 
-     */
-    public boolean contemCondicaoParada(Populacao populacao) {
-        return populacao.getGeracaoAtual() == populacao.getQtdMaxGeracoes();
-    }
-
-    private static int randInt(int min, int max){
-        Random rand = new Random();
-        int randomNum = rand.nextInt((max-min)+1)+min;
-        return randomNum;
     }
 
 }
