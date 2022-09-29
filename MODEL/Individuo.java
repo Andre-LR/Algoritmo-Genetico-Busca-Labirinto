@@ -9,10 +9,9 @@ public class Individuo {
     public ArrayList<Integer> genes = new ArrayList<Integer>();
     public int[] movimentosPossiveis = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-
     /** Initializes random individual.
      *
-     * The chromosome is made of 1s, 2s, 3s, 4s, 6s, 7s, 8s and 9s, presenting the directions of robot
+     * 
      * 8 - move up
      * 4 - move left
      * 6 - move right
@@ -34,7 +33,6 @@ public class Individuo {
         }
     }
     
-
     // getters and setters
     public double getAptidao() {
         return aptidao;
@@ -66,7 +64,5 @@ public class Individuo {
         geneString = geneString + "]";
         return geneString;
     }
-
-     
 
 }
