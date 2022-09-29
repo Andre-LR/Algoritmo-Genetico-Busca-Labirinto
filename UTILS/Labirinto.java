@@ -1,10 +1,13 @@
 package UTILS;
 
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 
-public class Labirinto extends JPanel{    
+import static java.lang.System.exit;
+
+public class Labirinto extends JPanel{
     public static char[][] labirinto;
     public static int tamLabirinto;
     public static int linhas;
@@ -14,7 +17,7 @@ public class Labirinto extends JPanel{
     public ArrayList<int[]> posicaoObjetivos = new ArrayList<int[]>(); // Lista com coordenada dos objetivos na Matriz
 
     // Construtor Labirinto
-    public Labirinto(String title){
+    public Labirinto(String title) throws IOException {
         /**
             * Inicialização do Labirinto
             * 
@@ -23,18 +26,22 @@ public class Labirinto extends JPanel{
             * 1 = Parede        * C = Objetivos a serem buscados            
         */
 
-        labirinto = new char[][]{
-            {'E', '1', '1', '1', '1', '1', '1', '1', '0', '1'},
-            {'0', '0', '0', '0', 'C', '0', '0', '0', '0', '1'},
-            {'1', '1', '1', '0', '1', '1', '1', '1', '1', '0'},
-            {'0', '0', '1', '0', '1', '0', '0', '0', '0', '0'},
-            {'C', '0', '1', '0', '1', '1', '0', '1', '1', '1'},
-            {'0', '0', '0', '0', '1', 'C', '0', '0', '0', '0'},
-            {'0', '1', '1', '1', '1', '0', '0', '1', '0', 'C'},
-            {'0', '1', '0', '0', '0', '0', '0', '0', '1', '1'},
-            {'0', '1', '1', '1', '1', '1', '1', '0', '0', '1'},
-            {'C', '0', '0', '0', '0', '0', '0', '0', '0', '1'}
-        };
+//        labirinto = new char[][]{
+//            {'E', '1', '1', '1', '1', '1', '1', '1', '0', '1'},
+//            {'0', '0', '0', '0', 'C', '0', '0', '0', '0', '1'},
+//            {'1', '1', '1', '0', '1', '1', '1', '1', '1', '0'},
+//            {'0', '0', '1', '0', '1', '0', '0', '0', '0', '0'},
+//            {'C', '0', '1', '0', '1', '1', '0', '1', '1', '1'},
+//            {'0', '0', '0', '0', '1', 'C', '0', '0', '0', '0'},
+//            {'0', '1', '1', '1', '1', '0', '0', '1', '0', 'C'},
+//            {'0', '1', '0', '0', '0', '0', '0', '0', '1', '1'},
+//            {'0', '1', '1', '1', '1', '1', '1', '0', '0', '1'},
+//            {'C', '0', '0', '0', '0', '0', '0', '0', '0', '1'}
+//        };
+
+        // função para ter arquivo txt com labirinto
+
+        labirinto = this.geraLabirinto();
         
         // Busca posição objetivos e posição inicial
         for (int i = 0; i < labirinto.length; i++) {
@@ -63,6 +70,43 @@ public class Labirinto extends JPanel{
         f.setSize(400,400); // Tamanho janela display
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    // le arquivo e gera labirinto
+    public char [][] geraLabirinto () {
+        char[][] maze = new char[0][];
+        try {
+            BufferedReader infile = new BufferedReader(new FileReader("Algoritmo-Genetico-Busca-Labirinto/UTILS/labirinto.txt"));
+            int rows = 10;
+            int cols = 10;
+            maze = new char[rows][cols];
+            infile.readLine();
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    // remove blank spaces
+                    char ch = (char) infile.read();
+                    while (ch == ' ') {
+                        ch = (char) infile.read();
+                    } // end while
+                    maze[r][c] = ch;
+                }
+                infile.readLine();
+            }
+            infile.close();
+
+        }
+
+        catch (FileNotFoundException e) {
+
+            System.out.println("Input file not found.");
+
+        } catch (IOException e) {
+
+            System.out.println("Error reading from file.");
+
+        }
+
+        return maze;
     }
 
     // Paleta de Cores
