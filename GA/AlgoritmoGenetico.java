@@ -1,5 +1,11 @@
+package GA;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import MODEL.Individuo;
+import MODEL.Populacao;
+import UTILS.Maze;
 
 public class AlgoritmoGenetico {
     public Populacao populacao;
@@ -22,7 +28,7 @@ public class AlgoritmoGenetico {
      * 
      * @param populacao
      * @return O indivíduo selecionado para o crossover
-     */
+     
     public Individuo selecionaIndividuoPorTorneio(Populacao populacao) {
         // Cria torneio
         Populacao torneio = new Populacao(this.populacao.getTamanhoPopulacao(), this.populacao.getMaze());
@@ -54,7 +60,7 @@ public class AlgoritmoGenetico {
             return segundoIndividuo;
         }
     } 
-
+    
  //========================================== CROSSOVER ===========================================
 
     /** 
@@ -69,6 +75,7 @@ public class AlgoritmoGenetico {
      *
      * @return atualizar a população atual
      */
+    /*
     public void crossoverPopulacao() {
         System.out.println("\n=============== Início crossover da população ===============");
         System.out.println("\nCria População intermediária...");
@@ -121,7 +128,7 @@ public class AlgoritmoGenetico {
         this.populacao = populacaoIntermediaria;
         System.out.println("\n=============== Fim crossover da população ===============");
     }
-
+    */
  //========================================== MUTAÇÃO ============================================
 
     /** 
@@ -129,7 +136,7 @@ public class AlgoritmoGenetico {
     * Realiza uma mutação de X% nos genes de TODOS os indivíduos da população
     * Aplica mutação na população
     * @return População atual mutada
-    */
+    /
     public void mutacaoPopulacao01() {
         // Inicializa nova população
         Populacao populacaoMutada = new Populacao(this.populacao.getTamanhoPopulacao(), this.populacao.getMaze());
@@ -162,7 +169,7 @@ public class AlgoritmoGenetico {
     * Realiza a mutação de X% dos individuos da população
     * Aplica mutação na população
     * @return População atual mutada
-    */
+    /*
     public void mutacaoPopulacao02(){
         Populacao populacaoMutada = new Populacao(this.populacao.getTamanhoPopulacao(), this.populacao.getMaze());
         int[] movimentosPossiveis = {1, 2, 3, 4, 6, 7, 8, 9};
@@ -187,6 +194,7 @@ public class AlgoritmoGenetico {
             }
         }
     }
+    */
     //========================================== APTIDÃO ============================================
 
     /**
@@ -221,9 +229,9 @@ public class AlgoritmoGenetico {
 
 
         // Armazena a aptidão
-        individuo.setAptidao(aptidao);
+       // individuo.setAptidao(aptidao);
 
-        return aptidao;
+        return 0;
     }
 
     /**
@@ -240,7 +248,7 @@ public class AlgoritmoGenetico {
         double populacaoAptidao = 0;
 
         for (Individuo individuo : populacao.getIndividuos()) {
-            populacaoAptidao += this.calculaAptidao(individuo, maze);
+           // populacaoAptidao += this.calculaAptidao(individuo, maze);
         }
 
         populacao.setPopulacaoAptidao(populacaoAptidao);

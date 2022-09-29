@@ -1,3 +1,5 @@
+package UTILS;  
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +24,7 @@ public class MazeDisplay extends JPanel {
             }
         }
     }
+
     
     /**
      * Display do Labirinto

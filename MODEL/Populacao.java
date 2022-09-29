@@ -1,52 +1,73 @@
+package MODEL;
+
 import java.util.Random;
 
 public class Populacao {
     public int tamPopulacao;
-    public Maze maze;
+    public int qtdMaxGeracoes = 500;
     public int geracaoAtual = 0;
-    public int qtdMaxGeracoes = 100;
     public Individuo[] individuos;
-    public Individuo melhorIndividuo;
-    public double aptidaoPopulacao;
-    public static int maxMovimentos = 300;
+    public double melhorAptidao = 0;
+    public int melhorAptidaoIndex;
+    public double aptidaoPopulacao = 0;
 
 
-    public Populacao(int tamPopulacao, Maze maze) {
+    public Populacao(int tamPopulacao) {
         this.tamPopulacao = tamPopulacao;
-        this.maze = maze;
         individuos = new Individuo[tamPopulacao];
 
         // Cria a população inicial
         for (int i = 0; i < tamPopulacao; i++) {
-            individuos[i] = new Individuo(this.maze);
+            individuos[i] = new Individuo();
         }
-        geracaoAtual++;
     }
 
-    public Individuo getMelhorIndividuo() {
+    public Individuo getIndividuoMelhorAptidao() {
         double aptidaoMaxima = Double.MAX_VALUE;
         int aptidaoMaximaIndex = 0;
         for (int i = 0; i < individuos.length; i++) {
-            if (individuos[i].getAptidao() <= aptidaoMaxima) {
+            if (aptidaoMaxima >= individuos[i].getAptidao()) {
                 aptidaoMaxima = individuos[i].getAptidao();
                 aptidaoMaximaIndex = i;
             }
         }
+
+        melhorAptidao = individuos[aptidaoMaximaIndex].getAptidao();
+        melhorAptidaoIndex = aptidaoMaximaIndex;
         return individuos[aptidaoMaximaIndex];
     }
 
-    public int getMelhorIndividuoIndex() {
-        for(int i=0; i<individuos.length; i++) {
-            if(individuos[i].getAptidao() == getMelhorIndividuo().getAptidao()) {
-                return i;
+    public Individuo getIndividuoSegundoMelhorAptidao() {
+        double aptidaoMaxima = Double.MAX_VALUE;
+        int aptidaoMaximaIndex = 0;
+        double aptidaoMaxima2 = Double.MAX_VALUE;
+        int aptidaoMaximaIndex2 = 0;
+        for (int i = 0; i < individuos.length; i++) {
+            if (aptidaoMaxima >= individuos[i].getAptidao()) {
+                aptidaoMaxima2 = aptidaoMaxima;
+                aptidaoMaximaIndex2 = aptidaoMaximaIndex;
+                aptidaoMaxima = individuos[i].getAptidao();
+                aptidaoMaximaIndex = i;
+            } else if (aptidaoMaxima2 >= individuos[i].getAptidao()) {
+                aptidaoMaxima2 = individuos[i].getAptidao();
+                aptidaoMaximaIndex2 = i;
             }
         }
-        return 0;
+        return individuos[aptidaoMaximaIndex2];
+    }
+
+    public int getIndexMelhorAptidao() {
+        Individuo i = getIndividuoMelhorAptidao();
+        return melhorAptidaoIndex;
     }
 
     // getters and setters
-    public int getTamanhoPopulacao() {
+    public int getTamPopulacao() {
         return tamPopulacao;
+    }
+
+    public void setTamPopulacao(int tamPopulacao) {
+        this.tamPopulacao = tamPopulacao;
     }
 
     public Individuo[] getIndividuos() {
@@ -66,8 +87,20 @@ public class Populacao {
         }
     }
 
+    public double getMelhorAptidao() {
+        return melhorAptidao;
+    }
+
+    public void setMelhorAptidao(int melhorAptidao) {
+        this.melhorAptidao = melhorAptidao;
+    }
+
     public void setPopulacaoAptidao(double populacaoAptidao) {
         this.aptidaoPopulacao = populacaoAptidao;
+    }
+
+    public int getQtdMaxGeracoes() {
+        return qtdMaxGeracoes;
     }
 
     public int getGeracaoAtual() {
@@ -82,13 +115,6 @@ public class Populacao {
         individuos[index] = individuo;
     }
 
-    public int getQtdMaxGeracoes() {
-        return qtdMaxGeracoes;
-    }
-
-    public Maze getMaze() {
-        return maze;
-    }
 
     // Embaralhar a população
     public void embaralha() {
@@ -101,13 +127,7 @@ public class Populacao {
         }
     }
 
-    // Remove o individuo da populacao
-    public void removeIndividuo(Individuo individuo) {
-        for (int i = 0; i < individuos.length; i++) {
-            if (individuos[i] == individuo) {
-                individuos[i] = null;
-                break;
-            }
-        }
+    public Object getMaze() {
+        return null;
     }
 }

@@ -1,21 +1,25 @@
 import java.io.FileNotFoundException;
 import java.util.Random;
 
+import MODEL.*;
+import UTILS.*;
+
+
 public class Jogo {
     public Populacao populacao;
-    public Individuo melhorIndividuo;
+    //public Individuo melhorIndividuo;
     public int geracaoCount = 0;
 
     public Jogo(int popSize) {
-       // populacao = new Populacao(popSize);
-      //  melhorIndividuo = populacao.getIndividuoMelhorAptidao();
+        populacao = new Populacao(popSize);
+        //melhorIndividuo = populacao.getIndividuoMelhorAptidao();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
         Maze maze = new Maze();
-        Populacao populacao = new Populacao(100, maze);
-        
-        
+        MazeDisplay mazeDisplay = new MazeDisplay(maze, "Labirinto");
+        maze.printLabirinto();
+        maze.printPosicaoObjetivos();       
     }
 
 
