@@ -31,7 +31,7 @@ public class Populacao {
         return individuos[aptidaoMaximaIndex];
     }
 
-    public Double getMelhorAptidao(){
+    public double getMelhorAptidao(){
         return getMelhorIndividuo().getAptidao();
     }
 
