@@ -4,7 +4,7 @@ import UTILS.Labirinto;
 
 public class Populacao {
     public int tamPopulacao;
-    public int qtdMaxGeracoes = 1500;
+    public int qtdMaxGeracoes = 300;
     public int geracaoAtual = 0;
     public Individuo[] individuos;
 
