@@ -8,12 +8,15 @@ public class Main {
         Labirinto labirinto = new Labirinto("Labirinto");
 
         labirinto.imprimeLabirinto();
-        labirinto.imprimePosicaoObjetivos();       
+        labirinto.imprimePosicaoObjetivos();     
+        System.out.println("Qtd de objetivos: " + Labirinto.qtdObjetivos);  
 
-        int tamPopulacao = 100;
+        int tamPopulacao = 5;
         double taxaMutacao = 0.5;
         double taxaCrossover = 0.2;
         AlgoritmoGenetico ag = new AlgoritmoGenetico(labirinto, tamPopulacao, taxaMutacao, taxaCrossover);
+        ag.run();
+
     }
     
 }

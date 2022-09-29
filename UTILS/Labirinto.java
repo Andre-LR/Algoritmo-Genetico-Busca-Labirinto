@@ -5,10 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Labirinto extends JPanel{    
-    public char[][] labirinto;
-    public int linhas;
-    public int colunas;
-    public int[] posicaoInicial = {0,0};
+    public static char[][] labirinto;
+    public static int tamLabirinto;
+    public static int linhas;
+    public static int colunas;
+    public static int[] posicaoInicial = {0,0};
+    public static int qtdObjetivos;
     public ArrayList<int[]> posicaoObjetivos = new ArrayList<int[]>(); // Lista com coordenada dos objetivos na Matriz
 
     // Construtor Labirinto
@@ -44,9 +46,15 @@ public class Labirinto extends JPanel{
                 if (labirinto[i][j] == 'C') {
                     int[] posicaoObjetivo = {i, j};
                     posicaoObjetivos.add(posicaoObjetivo);
+                    qtdObjetivos++;
                 }
             }
-        }   
+        }  
+        
+        // Tamanho do Labirinto
+        linhas = labirinto.length;
+        colunas = labirinto[0].length;
+        tamLabirinto = linhas;
 
         JFrame f = new JFrame();
         f.getContentPane().add(this);

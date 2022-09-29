@@ -1,6 +1,7 @@
 package IA;
 
 import MODEL.Individuo;
+import UTILS.Labirinto;
 
 public class Crossover {
     /** 

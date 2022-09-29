@@ -24,9 +24,15 @@ public class AlgoritmoGenetico {
         populacao = new Populacao(popSize);
 
         // avalia a população inicial
-
-        // enquanto não atingir o critério de parada
-        while(true){
+        for (int i = 0; i < populacao.getIndividuos().length; i++) {
+            populacao.getIndividuo(i).calculaAptidao();
+        }
+        
+        // Vizualiza geracao inicial
+        System.out.println(populacao.toString());
+        
+        // enquanto não atingir o critério de parada PRECISA TESTAR E ATUALIZAR
+        while(populacao.getQtdMaxGeracoes() > populacao.getGeracaoAtual() && populacao.getMelhorAptidao() > 0){
             // seleciona os indivíduos para crossover
             Populacao popIntermediaria = new Populacao(popSize);
 
@@ -52,10 +58,22 @@ public class AlgoritmoGenetico {
 
             // substitui a população antiga pela nova
             populacao = popIntermediaria;
+            populacao.geracaoAtual++;
 
             // avalia a nova população
+            for (int i = 0; i < populacao.getIndividuos().length; i++) {
+                populacao.getIndividuo(i).calculaAptidao();
+            }
+
+            // Vizualiza nova geracao
+            System.out.println(populacao.toString());
+
           // populacao.avaliar(labirinto);
         }
+
+        // imprime o melhor indivíduo e o caminho percorrido por ele
+        System.out.println("Melhor Individuo: " + populacao.getMelhorIndividuo().toString());
+
     }
 
  

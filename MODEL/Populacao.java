@@ -1,8 +1,10 @@
 package MODEL;
 
+import UTILS.Labirinto;
+
 public class Populacao {
     public int tamPopulacao;
-    public int qtdMaxGeracoes = 500;
+    public int qtdMaxGeracoes = 50;
     public int geracaoAtual = 0;
     public Individuo[] individuos;
     public double aptidaoPopulacao = 0;
@@ -37,6 +39,10 @@ public class Populacao {
         return individuos;
     }
 
+    public Individuo getIndividuo(int index) {
+        return individuos[index];
+    }
+
     public void setPopulacaoAptidao(double populacaoAptidao) {
         this.aptidaoPopulacao = populacaoAptidao;
     }
@@ -50,9 +56,9 @@ public class Populacao {
     }
 
     public String toString() {
-        String s = "";
+        String s = "\n\nGeração: " + geracaoAtual;
         for (int i = 0; i < individuos.length; i++) {
-            s += "\nIndivíduo: " + i + "-->" + individuos[i].toString();
+            s += "\n\nIndivíduo: " + i + " --> " + individuos[i].toString();
         }
         return s + "]";
     }
