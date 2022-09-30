@@ -67,7 +67,7 @@ public class Populacao {
     public String printGeracao() {
         String s = "\n\n\n\n============================================================================================= Geraçao " + geracaoAtual + " =============================================================================================";
         s += "\nMelhor aptidao da geracao: " + getMelhorAptidao();
-        s += "\nObjetivos alcançados: " + getMelhorIndividuo().objetivosEncontrados;
+        s += "\nObjetivos alcancados: " + getMelhorIndividuo().objetivosEncontrados;
         s += "\nMelhor Individuo: " + getMelhorIndividuo().toString();
         return s;
     }

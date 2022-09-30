@@ -70,8 +70,6 @@ public class Individuo {
 
         geneString = geneString + "]";
 
-        geneString += "\nAptidao: " + getAptidao();
-        geneString += "\nQuantidade de objetivos encontrados: " + objetivosEncontrados;
         return geneString;
     }
 
