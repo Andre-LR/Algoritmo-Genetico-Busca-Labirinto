@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 
-import static java.lang.System.exit;
-
 public class Labirinto extends JPanel{
     public static char[][] labirinto;
     public static int tamLabirinto;
@@ -17,7 +15,7 @@ public class Labirinto extends JPanel{
     public ArrayList<int[]> posicaoObjetivos = new ArrayList<int[]>(); // Lista com coordenada dos objetivos na Matriz
 
     // Construtor Labirinto
-    public Labirinto(String title) throws IOException {
+    public Labirinto(String arquivo) throws IOException {
         /**
             * Inicialização do Labirinto
             * 
@@ -26,22 +24,8 @@ public class Labirinto extends JPanel{
             * 1 = Parede        * C = Objetivos a serem buscados            
         */
 
-    //    labirinto = new char[][]{
-    //        {'E', '1', '1', '1', '1', '1', '1', '1', '0', '1'},
-    //        {'0', '0', '0', '0', 'C', '0', '0', '0', '0', '1'},
-    //        {'1', '1', '1', '0', '1', '1', '1', '1', '1', '0'},
-    //        {'0', '0', '1', '0', '1', '0', '0', '0', '0', '0'},
-    //        {'C', '0', '1', '0', '1', '1', '0', '1', '1', '1'},
-    //        {'0', '0', '0', '0', '1', 'C', '0', '0', '0', '0'},
-    //        {'0', '1', '1', '1', '1', '0', '0', '1', '0', 'C'},
-    //        {'0', '1', '0', '0', '0', '0', '0', '0', '1', '1'},
-    //        {'0', '1', '1', '1', '1', '1', '1', '0', '0', '1'},
-    //        {'C', '0', '0', '0', '0', '0', '0', '0', '0', '1'}
-    //    };
-
         // função para ter arquivo txt com labirinto
-
-        labirinto = this.geraLabirinto();
+        labirinto = this.geraLabirinto(arquivo);
         
         // Busca posição objetivos e posição inicial
         for (int i = 0; i < labirinto.length; i++) {
@@ -58,7 +42,7 @@ public class Labirinto extends JPanel{
             }
         }  
         
-        // Tamanho do Labirinto
+        // dimensões do Labirinto
         linhas = labirinto.length;
         colunas = labirinto[0].length;
         tamLabirinto = linhas;
@@ -66,17 +50,17 @@ public class Labirinto extends JPanel{
         JFrame f = new JFrame();
         f.getContentPane().add(this);
         setBackground(Color.WHITE);
-        f.setTitle(title);
+        f.setTitle("Labirinto");
         f.setSize(400,400); // Tamanho janela display
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     // le arquivo e gera labirinto
-    public char [][] geraLabirinto () {
+    public char [][] geraLabirinto (String arquivo) {
         char[][] maze = new char[0][];
         try {
-            BufferedReader infile = new BufferedReader(new FileReader("labirinto.txt"));
+            BufferedReader infile = new BufferedReader(new FileReader(arquivo));
             int rows = 10;
             int cols = 10;
             maze = new char[rows][cols];

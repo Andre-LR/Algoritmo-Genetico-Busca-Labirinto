@@ -13,6 +13,7 @@ public class Individuo {
     public ArrayList<Integer> genes = new ArrayList<Integer>();
     public int[] movimentosPossiveis = {1, 2, 3, 4, 6, 7, 8, 9};
     public ArrayList<int[]> posicoesVisitadas = new ArrayList<int[]>();
+    
 
 
     /** 
@@ -39,6 +40,7 @@ public class Individuo {
         }
 
         posicaoAtual = Labirinto.posicaoInicial;
+        
     }
     
     // getters and setters

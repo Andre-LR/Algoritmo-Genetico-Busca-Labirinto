@@ -1,7 +1,5 @@
 package MODEL;
 
-import UTILS.Labirinto;
-
 public class Populacao {
     public int tamPopulacao;
     public int qtdMaxGeracoes = 300;
@@ -56,7 +54,7 @@ public class Populacao {
 
 
     public String toString() {
-        String s = "\n\n\n\n============================================================================================= Geraçao " + geracaoAtual + " =============================================================================================";
+        String s = "\n\n\n\n============================================================= Geracao " + geracaoAtual + " =============================================================";
         for (int i = 0; i < individuos.length; i++) {
             s += "\n\nIndividuo: " + i + " --> " + individuos[i].toString();
         }
@@ -65,7 +63,7 @@ public class Populacao {
     }
 
     public String printGeracao() {
-        String s = "\n\n\n\n============================================================================================= Geracao " + geracaoAtual + " =============================================================================================";
+        String s = "\n\n\n\n============================================================= Geracao " + geracaoAtual + " =============================================================";
         s += "\nMelhor aptidao da geracao: " + getMelhorAptidao();
         s += "\nObjetivos alcancados: " + getMelhorIndividuo().objetivosEncontrados;
         s += "\nMelhor Individuo: " + getMelhorIndividuo().toString();

@@ -23,9 +23,11 @@ public class AlgoritmoGenetico {
     }
 
     public void run() throws FileNotFoundException{
-        PrintStream out = new PrintStream(new File("log.txt")); System.setOut(out); System.out.println("Log de execução do algoritmo genético");
+        PrintStream out = new PrintStream(new File("LogResultado.txt")); System.setOut(out); System.out.println("Log de execucaoo do algoritmo genetico");
+        System.out.println("\nObjetivo: Alcancar todos os " + Labirinto.qtdObjetivos + " pontos dispostos no labirinto");
+        
         // gera a populacao inicial
-        System.out.println("========================== Gerando populacao inicial ==========================");
+        System.out.println("\n\n========================== Gerando populacao inicial ==========================");
         populacao = new Populacao(popSize);
 
         // avalia a populacao inicial
@@ -78,7 +80,5 @@ public class AlgoritmoGenetico {
 
             System.out.println(populacao.printGeracao());
         }
-
-
     }
 }
