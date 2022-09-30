@@ -41,7 +41,7 @@ public class AlgoritmoGenetico {
             System.out.println("========================== Selecionando individuos para crossover ==========================");
             Populacao popIntermediaria = populacao;
 
-            System.out.println("========================== Realizando seleção por torneio ==========================");
+            System.out.println("========================== Realizando selecao por torneio ==========================");
             Individuo[] individuosSelecionados = new Individuo[popIntermediaria.individuos.length];
             for(int i = 0; i < popIntermediaria.individuos.length; i++){
                 individuosSelecionados[i] = Selecao.torneio(populacao);
@@ -55,11 +55,11 @@ public class AlgoritmoGenetico {
             }
 
             // Elitismo
-            System.out.println("========================== Realizando seleção por elitismo ==========================");
+            System.out.println("========================== Realizando selecao por elitismo ==========================");
             popIntermediaria.individuos[0] = Selecao.elitismo(populacao); 
 
-            // realiza a mutação de individuo aleatório (não pode ser o elistista)
-            System.out.println("========================== Realizando mutação ==========================");
+            // realiza a mutacao de individuo aleatório (não pode ser o elistista)
+            System.out.println("========================== Realizando mutacao ==========================");
             Random random = new Random();
             int index = random.nextInt(popIntermediaria.individuos.length-1) + 1;
 
